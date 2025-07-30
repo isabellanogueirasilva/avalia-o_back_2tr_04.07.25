@@ -2,13 +2,22 @@ usuarios = {}
 
 def cadastrar_usuario():
     print("\n Cadastro de Usuário")
-    usuario = input("Escolha um nome de usuário: ")
+    
+    while True:
+        usuario = input("Escolha um nome de usuário (mínimo 4 letras): ")
+        if len(usuario) < 4:
+            print("O nome de usuário deve ter no mínimo 4 letras.")
+        elif usuario in usuarios:
+            print("Usuário já existe! Tente outro.")
+        else:
+            break
 
-    if usuario in usuarios:
-        print("Usuário já existe! Tente outro.")
-        return
-
-    senha = input("Digite uma senha: ")
+    while True:
+        senha = input("Digite uma senha (mínimo 6 caracteres): ")
+        if len(senha) < 6:
+            print("A senha deve ter no mínimo 6 caracteres.")
+        else:
+            break
 
     print("\nEscolha o tipo de perfil:")
     print("1. Perfil Pessoal")
@@ -19,9 +28,28 @@ def cadastrar_usuario():
         if perfil_opcao == "1":
             perfil = "Pessoal"
             print("\n Dados do Perfil Pessoal:")
-            email = input("Email: ")
-            cpf = input("CPF: ")
-            telefone = input("Telefone: ")
+            
+            while True:
+                email = input("Email: ")
+                if "@" not in email or "." not in email:
+                    print("Email inválido. Tente novamente.")
+                else:
+                    break
+
+            while True:
+                cpf = input("CPF (11 dígitos): ")
+                if not cpf.isdigit() or len(cpf) != 11:
+                    print("CPF inválido. Deve conter exatamente 11 números.")
+                else:
+                    break
+
+            while True:
+                telefone = input("Telefone (10 ou 11 dígitos): ")
+                if not telefone.isdigit() or len(telefone) not in [10, 11]:
+                    print("Telefone inválido. Deve conter 10 ou 11 dígitos numéricos.")
+                else:
+                    break
+
             dados = {
                 "email": email,
                 "cpf": cpf,
@@ -32,10 +60,35 @@ def cadastrar_usuario():
         elif perfil_opcao == "2":
             perfil = "Empresário"
             print("\nDados do Perfil Empresário:")
-            email = input("Email: ")
-            cnpj = input("CNPJ: ")
-            telefone = input("Telefone: ")
-            cpf = input("CPF do responsável: ")
+
+            while True:
+                email = input("Email: ")
+                if "@" not in email or "." not in email:
+                    print("Email inválido. Tente novamente.")
+                else:
+                    break
+
+            while True:
+                cnpj = input("CNPJ (14 dígitos): ")
+                if not cnpj.isdigit() or len(cnpj) != 14:
+                    print("CNPJ inválido. Deve conter exatamente 14 números.")
+                else:
+                    break
+
+            while True:
+                telefone = input("Telefone (10 ou 11 dígitos): ")
+                if not telefone.isdigit() or len(telefone) not in [10, 11]:
+                    print("Telefone inválido. Deve conter 10 ou 11 dígitos numéricos.")
+                else:
+                    break
+
+            while True:
+                cpf = input("CPF do responsável (11 dígitos): ")
+                if not cpf.isdigit() or len(cpf) != 11:
+                    print("CPF inválido. Deve conter exatamente 11 números.")
+                else:
+                    break
+
             dados = {
                 "email": email,
                 "cnpj": cnpj,
