@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login e Cadastro - MoneyOS</title>
+  <link rel="stylesheet" href="cadastro.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>💰 MoneyOS</h1>
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="#">Recursos</a>
+        <a href="#">Planos</a>
+        <a href="#">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="auth-section">
+    <div class="auth-container">
+      <div id="loginForm" class="auth-form active">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Senha" required />
+        <button class="btn full">Entrar</button>
+        <button class="switch-btn" onclick="toggleForms()">Criar uma conta</button>
+      </div>
+
+      <div id="signupForm" class="auth-form">
+        <h2>Cadastro</h2>
+        <input type="text" id="nome" placeholder="Nome completo" required />
+
+        <select id="tipoConta" onchange="toggleDocumento()" required>
+          <option value="" disabled selected>Tipo de conta</option>
+          <option value="pessoal">Pessoal</option>
+          <option value="empresarial">Empresarial</option>
+        </select>
+
+        <input type="email" id="email" placeholder="Email (ex: nome@email.com)" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+
+        <input type="tel" id="telefone" placeholder="Telefone com DDD (ex: 11999999999)" pattern="\d{10,11}" required />
+
+        <input type="text" id="documento" placeholder="CPF ou CNPJ" required />
+
+        <input type="password" id="senha" placeholder="Senha" required />
+
+        <button class="btn full">Cadastrar</button>
+        <button class="switch-btn" onclick="toggleForms()">Já tem uma conta? Entrar</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MoneyOS. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleForms() {
+      document.getElementById("loginForm").classList.toggle("active");
+      document.getElementById("signupForm").classList.toggle("active");
+    }
+
+    function toggleDocumento() {
+      const tipo = document.getElementById("tipoConta").value;
+      const campo = document.getElementById("documento");
+      if (tipo === "pessoal") {
+        campo.placeholder = "CPF (ex: 12345678900)";
+        campo.pattern = "\\d{11}";
+      } else if (tipo === "empresarial") {
+        campo.placeholder = "CNPJ (ex: 12345678000100)";
+        campo.pattern = "\\d{14}";
+      }
+    }
+  </script>
+</body>
+</html>
